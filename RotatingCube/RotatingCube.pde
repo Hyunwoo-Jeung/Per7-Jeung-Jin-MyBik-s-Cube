@@ -1,6 +1,6 @@
 void setup()
 {
-  size(200, 200, P3D);
+  size(600, 600, P3D);
 }
 
 void draw()
@@ -10,12 +10,12 @@ void draw()
   background(255);
   lights();
   pushMatrix();
-  translate(100, 100);
+  translate(300, 300);
   if(mousePressed){
   rotateY(angle);
   rotateX(angle);
   rotateZ(angle);
   }  
-  box(50);
+  box(150);
   popMatrix();
 }
