@@ -3,6 +3,7 @@ float y = 0;
 
 void setup(){
   size(600, 600, P3D);
+  smooth();
 }
 
 void draw()
