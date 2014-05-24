@@ -1,5 +1,6 @@
 void setup(){
   size(600, 600, P3D);
+  smooth();
 }
 
 float value = PI/4;
@@ -13,7 +14,7 @@ void draw()
   
   background(255);
   lights();
-  camera(0, 0, (height/2)/tan(PI/6),
+  camera(0, 0, (height/2),
          width/2, height/2, 0, 
          0, 1, 0);
   pushMatrix();
@@ -21,7 +22,53 @@ void draw()
   rotateX(x);
   rotateY(y);
   rotateZ(z);
-  box(100);
+  beginShape(QUADS);
+  fill(255,0,0);
+  vertex(-100, -100,  100);
+  vertex( 100, -100,  100);
+  vertex( 100,  100,  100);
+  vertex(-100,  100,  100);
+  endShape();
+  // Back
+  beginShape(QUADS);
+  fill(255,255,0);
+  vertex( 100, -100, -100);
+  vertex(-100, -100, -100);
+  vertex(-100,  100, -100);
+  vertex( 100,  100, -100);
+  endShape();
+  // Bottom
+  beginShape(QUADS);
+  fill( 255,0,255);
+  vertex(-100,  100,  100);
+  vertex( 100,  100,  100);
+  vertex( 100,  100, -100);
+  vertex(-100,  100, -100);
+  endShape();
+  // Top
+  beginShape(QUADS);
+  fill(0,255,0);
+  vertex(-100, -100, -100);
+  vertex( 100, -100, -100);
+  vertex( 100, -100,  100);
+  vertex(-100, -100,  100);
+  endShape();
+  // Right
+  beginShape(QUADS);
+  fill(0,0,255);
+  vertex( 100, -100,  100);
+  vertex( 100, -100, -100);
+  vertex( 100,  100, -100);
+  vertex( 100,  100,  100);
+  endShape();
+  // Left
+  beginShape(QUADS);
+  fill(0,255,255);
+  vertex(-100, -100, -100);
+  vertex(-100, -100,  100);
+  vertex(-100,  100,  100);
+  vertex(-100,  100, -100);
+  endShape();
   popMatrix();
 }
 
