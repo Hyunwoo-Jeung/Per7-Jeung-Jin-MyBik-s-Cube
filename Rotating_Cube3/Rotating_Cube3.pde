@@ -28,14 +28,20 @@ void draw()
   void keyReleased(){
     if(key == 'x' || key == 'X'){
       rotateX(value);
+      if (x == 2 * PI)
+        x = 0;
       x += value;
     }
     else if (key == 'y' || key == 'Y'){
       rotateY(value);
+      if (y == 2 * PI)
+        y = 0;
       y += value;
     }
     else if (key == 'z' || key == 'Z'){
       rotateZ(value);
+      if (z == 2 * PI)
+        z = 0;
       z += value;
     }
   }  
