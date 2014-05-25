@@ -31,7 +31,7 @@ void draw()
   endShape();
   // Back
   beginShape(QUADS);
-  fill(255,255,0);
+  fill(255,150,0);
   vertex( 100, -100, -100);
   vertex(-100, -100, -100);
   vertex(-100,  100, -100);
@@ -39,7 +39,7 @@ void draw()
   endShape();
   // Bottom
   beginShape(QUADS);
-  fill( 255,0,255);
+  fill( 255,255,255);
   vertex(-100,  100,  100);
   vertex( 100,  100,  100);
   vertex( 100,  100, -100);
@@ -47,7 +47,7 @@ void draw()
   endShape();
   // Top
   beginShape(QUADS);
-  fill(0,255,0);
+  fill(255,255,0);
   vertex(-100, -100, -100);
   vertex( 100, -100, -100);
   vertex( 100, -100,  100);
@@ -55,7 +55,7 @@ void draw()
   endShape();
   // Right
   beginShape(QUADS);
-  fill(0,0,255);
+  fill(0,255,0);
   vertex( 100, -100,  100);
   vertex( 100, -100, -100);
   vertex( 100,  100, -100);
@@ -63,7 +63,7 @@ void draw()
   endShape();
   // Left
   beginShape(QUADS);
-  fill(0,255,255);
+  fill(0,0,255);
   vertex(-100, -100, -100);
   vertex(-100, -100,  100);
   vertex(-100,  100,  100);
