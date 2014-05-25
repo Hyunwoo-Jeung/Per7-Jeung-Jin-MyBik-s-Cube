@@ -131,7 +131,9 @@ void moveTopRowRight(){
   rotateY(topRowDegree);
   translate(-100,0,-100);
   
+  fill(255,0,0);
   box(100);
+  noFill();
   translate(100,0,0);
   box(100);
   translate(100,0,0);
@@ -192,8 +194,9 @@ void moveTopRowLeft(){
   translate(100,-300,100);
   rotateY(topRowDegree);
   translate(-100,0,-100);
-  
+  fill(0,255,0);
   box(100);
+  noFill();
   translate(100,0,0);
   box(100);
   translate(100,0,0);
