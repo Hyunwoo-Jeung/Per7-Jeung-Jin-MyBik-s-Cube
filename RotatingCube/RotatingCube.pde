@@ -8,56 +8,57 @@ float rotx = 0;
 float roty = 0;
 float rotz = 0;
 
+int size = 50;
 void setup(){
   size(600, 600, P3D);
   smooth();
     cube = createShape();
   cube.beginShape(QUADS);
   cube.fill(255,0,0);
-  cube.vertex(-100, -100,  100);
-  cube.vertex( 100, -100,  100);
-  cube.vertex( 100,  100,  100);
-  cube.vertex(-100,  100,  100);
+  cube.vertex(-size, -size,  size);
+  cube.vertex( size, -size,  size);
+  cube.vertex( size,  size,  size);
+  cube.vertex(-size,  size,  size);
   cube.endShape();
   // Back
   cube.beginShape(QUADS);
   cube.fill(255,150,0);
-  cube.vertex( 100, -100, -100);
-  cube.vertex(-100, -100, -100);
-  cube.vertex(-100,  100, -100);
-  cube.vertex( 100,  100, -100);
+  cube.vertex( size, -size, -size);
+  cube.vertex(-size, -size, -size);
+  cube.vertex(-size,  size, -size);
+  cube.vertex( size,  size, -size);
   cube.endShape();
   // Bottom
   cube.beginShape(QUADS);
   cube.fill( 255,255,255);
-  cube.vertex(-100,  100,  100);
-  cube.vertex( 100,  100,  100);
-  cube.vertex( 100,  100, -100);
-  cube.vertex(-100,  100, -100);
+  cube.vertex(-size,  size,  size);
+  cube.vertex( size,  size,  size);
+  cube.vertex( size,  size, -size);
+  cube.vertex(-size,  size, -size);
   cube.endShape();
   // Top
   cube.beginShape(QUADS);
   cube.fill(255,255,0);
-  cube.vertex(-100, -100, -100);
-  cube.vertex( 100, -100, -100);
-  cube.vertex( 100, -100,  100);
-  cube.vertex(-100, -100,  100);
+  cube.vertex(-size, -size, -size);
+  cube.vertex( size, -size, -size);
+  cube.vertex( size, -size,  size);
+  cube.vertex(-size, -size,  size);
   cube.endShape();
   // Right
   cube.beginShape(QUADS);
   cube.fill(0,255,0);
-  cube.vertex( 100, -100,  100);
-  cube.vertex( 100, -100, -100);
-  cube.vertex( 100,  100, -100);
-  cube.vertex( 100,  100,  100);
+  cube.vertex( size, -size,  size);
+  cube.vertex( size, -size, -size);
+  cube.vertex( size,  size, -size);
+  cube.vertex( size,  size,  size);
   cube.endShape();
   // Left
   cube.beginShape(QUADS);
   cube.fill(0,0,255);
-  cube.vertex(-100, -100, -100);
-  cube.vertex(-100, -100,  100);
-  cube.vertex(-100,  100,  100);
-  cube.vertex(-100,  100, -100);
+  cube.vertex(-size, -size, -size);
+  cube.vertex(-size, -size,  size);
+  cube.vertex(-size,  size,  size);
+  cube.vertex(-size,  size, -size);
   cube.endShape(CLOSE);
 }
 
@@ -70,9 +71,35 @@ void draw()
   lights();
   pushMatrix();
   translate(300, 300);
-  rotateX(x);
-  rotateY(y);
+    rotate(x);
+  rotate(y);
   shape(cube);
+  translate(-300,-300);
+  translate(200,300);
+  shape(cube);
+  translate(-200,-300);
+  translate(400,300);
+  shape(cube);
+  translate(-400,-300);
+  translate(300,300,100);
+  shape(cube);
+  translate(-300,-300,-100);
+  translate(200,300,100);
+  shape(cube);
+  translate(-200,-300,-100);
+  translate(400,300,100);
+  shape(cube);
+  translate(-400,-300,-100);
+  translate(300,300,-100);
+  shape(cube);
+  translate(-300,-300,100);
+  translate(200,300,-100);
+  shape(cube);
+  translate(-200,-300,100);
+  translate(400,300,-100);
+  shape(cube);
+  translate(-400,-300,100);
+  translate(300,300);
   popMatrix();
 }
 
