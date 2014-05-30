@@ -1,5 +1,7 @@
+import java.util.*;
+import java.io.*;
+
 class Box{
- 
 //Global Variables 
 PShape cube;  
 
@@ -7,15 +9,16 @@ int translateX;
 int translateY;
 int translateZ;
 
-float rotateInTheX=0;
-float rotateInTheY=0;
+int size=50;
+
+ArrayList<Float> rotation=new ArrayList<Float>();
+
 //Constructor
-Box(int x, int y, int z){
+public Box(int x, int y, int z){
   translateX=x;
   translateY=y;
   translateZ=z;
   
-  //What is size?
   cube = createShape();
   cube.beginShape(QUADS);
   cube.fill(255,0,0);
@@ -65,10 +68,10 @@ Box(int x, int y, int z){
   cube.vertex(-size,  size, -size);
   cube.endShape(CLOSE);
 }
+//Functions
 
-
-
-
-//Functions 
-  
+void display(){
+  shape(cube);
 }
+}
+
