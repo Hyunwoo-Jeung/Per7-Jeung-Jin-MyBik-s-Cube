@@ -12,7 +12,7 @@ int size = 50;
 void setup(){
   size(600, 600, P3D);
   smooth();
-    cube = createShape();
+  cube = createShape();
   cube.beginShape(QUADS);
   cube.fill(255,0,0);
   cube.vertex(-size, -size,  size);
@@ -68,7 +68,6 @@ void draw()
          width/2, height/2, 0, 
          0, 1, 0);
   background(255);
-  lights();
   pushMatrix();
   translate(300, 300);
     rotate(x);
