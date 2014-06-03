@@ -80,12 +80,12 @@ void draw(){
 //zNegative -181 to -270
 
 ////////////////////////////////////////////////////////////////////////////////////
-void xPositiveA(){
-  goPositive =true;
+void xNegativeA(){
+  goPositive =false;
   
   for (int i=0;i<9;i++){
      temporary[i]=location[1+(i*3)];
-     temporary[i].rotation.add(temporary[i].rotation.size(),PI/18);
+     temporary[i].rotation.add(temporary[i].rotation.size(),-PI/18);
   }
   
   //manually moving boxes to next location
@@ -107,8 +107,8 @@ void xPositiveA(){
   location[4]=temp;
 }
 ////////////////////////////////////////////////////////////////////////////////////
-void xNegativeA(){
-  goPositive =false;
+void xPositiveA(){
+  goPositive =true;
   
   for (int i=0;i<9;i++){
      temporary[i]=location[1+(i*3)];
