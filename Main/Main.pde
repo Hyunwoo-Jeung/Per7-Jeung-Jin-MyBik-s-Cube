@@ -1,6 +1,6 @@
-Box one;
-Box two;
-Box twentyseven;
+//Box one;
+//Box two;
+//Box twentyseven;
 
 Box[] permanent;
 Box[] location;
@@ -21,17 +21,33 @@ void setup(){
   temporary = new Box[9];
   
   //Create Box and put into permanent and location
-  one = new Box(-100,-100,-100);
-  permanent[1] = one;
-  location[1] = one;
-  
-  two = new Box(0,-100,-100);
-  permanent[2] = two;
-  location[2] = two;
-  
-  twentyseven = new Box(100,0,0);
-  permanent[27] = twentyseven;
-  location[27] = twentyseven;
+//  one = new Box(-100,-100,-100);
+//  permanent[1] = one;
+//  location[1] = one;
+//  
+//  two = new Box(0,-100,-100);
+//  permanent[2] = two;
+//  location[2] = two;
+//  
+//  twentyseven = new Box(100,0,0);
+//  permanent[27] = twentyseven;
+//  location[27] = twentyseven;
+  int n=1;
+  translate(250,250,-250);
+  rotateX(-PI/4);
+  rotateY(PI/4);
+  for ( int y = -1; y < 2; y++ ){
+      for ( int z = -1; z < 2; z++ ){
+        for ( int x = -1; x < 2; x++ ){
+          permanent[n] = new Box( x*100, y*100, z*100 );
+          location[n]=permanent[n];
+          translate(permanent[n].translateX,permanent[n].translateY,permanent[n].translateZ);
+          shape(permanent[n].cube);
+          translate(-permanent[n].translateX,-permanent[n].translateY,-permanent[n].translateZ);
+          n++;
+        }
+      }
+    }
 }
 
 void draw(){
@@ -53,7 +69,6 @@ void draw(){
   //adds to ArrayList
   //tells if going back or going forward
   //moves boxes to next location 
-  
   if (keyPressed){
       if(key=='e'){
         xPositiveA();
@@ -124,7 +139,6 @@ void xPositiveA(){
   temp=location[7];
   location[7]=temp2;
   location[1]=temp;
-  
   temp=location[10];
   location[10]=location[4];
   temp2=location[22];
@@ -148,8 +162,8 @@ void myDraw(){
     
     //Print cube
     for(int i=1;i<28;i++){
-      Box temp = permanent[i];
       
+      Box temp = permanent[i];
       for (int r=0;r<temp.rotation.size();r++){
         if(temp.rotation.get(r)>0.0){
           if(temp.rotation.get(r)<=PI/2){
@@ -174,11 +188,9 @@ void myDraw(){
           }
         }
       }
-      
       translate(temp.translateX,temp.translateY,temp.translateZ);
       shape(temp.cube);
       translate(-temp.translateX,-temp.translateY,-temp.translateZ);
-      
       for (int r=temp.rotation.size()-1;r>=0;r--){
         if(temp.rotation.get(r)>0.0){
           if(temp.rotation.get(r)<=PI/2){
@@ -205,7 +217,6 @@ void myDraw(){
       }
     
     }
-    
     //Add/Subract temporary[]
     float n = PI/18;
     ninety+=n;
