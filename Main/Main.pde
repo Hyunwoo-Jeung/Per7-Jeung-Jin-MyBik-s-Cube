@@ -41,9 +41,10 @@ void setup(){
         for ( int x = -1; x < 2; x++ ){
           permanent[n] = new Box( x*100, y*100, z*100 );
           location[n]=permanent[n];
+          pushMatrix();
           translate(permanent[n].translateX,permanent[n].translateY,permanent[n].translateZ);
           shape(permanent[n].cube);
-          translate(-permanent[n].translateX,-permanent[n].translateY,-permanent[n].translateZ);
+          popMatrix();
           n++;
         }
       }
@@ -57,7 +58,6 @@ void draw(){
       myDraw();
     }
     else{
-      ninety=0.0;
       inProgress=false;
     }
   }
@@ -97,7 +97,7 @@ void draw(){
 ////////////////////////////////////////////////////////////////////////////////////
 void xNegativeA(){
   goPositive =false;
-  
+  ninety=PI/18;
   for (int i=0;i<9;i++){
      temporary[i]=location[1+(i*3)];
      temporary[i].rotation.add(temporary[i].rotation.size(),-PI/18);
@@ -124,7 +124,7 @@ void xNegativeA(){
 ////////////////////////////////////////////////////////////////////////////////////
 void xPositiveA(){
   goPositive =true;
-  
+  ninety=PI/18;
   for (int i=0;i<9;i++){
      temporary[i]=location[1+(i*3)];
      temporary[i].rotation.add(temporary[i].rotation.size(),PI/18);
@@ -159,11 +159,10 @@ void myDraw(){
     //adds to ninety
     background(125);
     translate(250,250,-250);
-    
     //Print cube
     for(int i=1;i<28;i++){
-      
       Box temp = permanent[i];
+      pushMatrix();
       for (int r=0;r<temp.rotation.size();r++){
         if(temp.rotation.get(r)>0.0){
           if(temp.rotation.get(r)<=PI/2){
@@ -173,7 +172,7 @@ void myDraw(){
             rotateY(temp.rotation.get(r)-PI/2);
           }
           else{
-            rotateZ(temp.rotation.get(3)-PI);
+            rotateZ(temp.rotation.get(r)-PI);
           }
         }
         else{
@@ -184,39 +183,17 @@ void myDraw(){
             rotateY(temp.rotation.get(r)+PI/2);
           }
           else{
-            rotateZ(temp.rotation.get(3)+PI);
+            rotateZ(temp.rotation.get(r)+PI);
           }
         }
       }
       translate(temp.translateX,temp.translateY,temp.translateZ);
       shape(temp.cube);
-      translate(-temp.translateX,-temp.translateY,-temp.translateZ);
-      for (int r=temp.rotation.size()-1;r>=0;r--){
-        if(temp.rotation.get(r)>0.0){
-          if(temp.rotation.get(r)<=PI/2){
-            rotateX(-temp.rotation.get(r));
-          }
-          else if(temp.rotation.get(r)<=PI){
-            rotateY(-temp.rotation.get(r)-PI/2);
-          }
-          else{
-            rotateZ(-temp.rotation.get(3)-PI);
-          }
-        }
-        else{
-          if(temp.rotation.get(r)>=-PI/2){
-            rotateX(-temp.rotation.get(r));
-          }
-          else if(temp.rotation.get(r)>=-PI){
-            rotateY(-temp.rotation.get(r)+PI/2);
-          }
-          else{
-            rotateZ(-temp.rotation.get(3)+PI);
-          }
-        }
-      }
-    
+      popMatrix();
+      println(temp.rotation);
     }
+    
+    if(ninety<PI/2){
     //Add/Subract temporary[]
     float n = PI/18;
     ninety+=n;
@@ -225,9 +202,9 @@ void myDraw(){
     }
     
     Box temp=temporary[0];
-    for (int i=0;i<9;i++){
-      temp=temporary[i];
-      temp.rotation.set(temp.rotation.size()-1,temp.rotation.get(temp.rotation.size()-1)+n);
+      for (int i=0;i<9;i++){
+        temp=temporary[i];
+        temp.rotation.set(temp.rotation.size()-1,temp.rotation.get(temp.rotation.size()-1)+n);
+      }
     }
-    
 }
