@@ -19,6 +19,7 @@ void setup(){
 }
 
 void draw(){
+  background(0);
     camera(0, 0, (height/2),
          width/2, height/2, 0, 
          0, 1, 0);
@@ -48,13 +49,13 @@ void draw(){
 
 void keyReleased(){
     if(key == 'e'){
-      xPositiveA();
+      zPositiveA();
     }
     else if(key == 'r'){
-      xPositiveB();
+      zPositiveB();
     }
     else if(key == 't'){
-      xPositiveC();
+      zPositiveC();
     }
     else if(key == 'd'){
       yPositiveA();
@@ -67,32 +68,32 @@ void keyReleased(){
     }
 }
 
-void xPositiveA(){
+void zPositiveA(){
   for(int m = 0; m < 3; m++){
-    permanent[m].setRotation(0,0,PI/2);
-    permanent[m+9].setRotation(0,0,PI/2);
-    permanent[m+18].setRotation(0,0,PI/2);
+    permanent[m].setRotation(3);
+    permanent[m+9].setRotation(3);
+    permanent[m+18].setRotation(3);
   }
   
   swapClockwise(0,2,18,20);
   swapClockwise(1,11,19,9);
 }
 
-void xPositiveB(){
+void zPositiveB(){
   for(int m = 0; m < 3; m++){
-    permanent[m+3].setRotation(0,0,PI/2);
-    permanent[m+12].setRotation(0,0,PI/2);
-    permanent[m+21].setRotation(0,0,PI/2);
+    permanent[m+3].setRotation(3);
+    permanent[m+12].setRotation(3);
+    permanent[m+21].setRotation(3);
   }
   swapClockwise(3,5,21,23);
   swapClockwise(4,14,22,12);
 }
 
-void xPositiveC(){
+void zPositiveC(){
   for(int m = 0; m < 3; m++){
-    permanent[m+6].setRotation(0,0,PI/2);
-    permanent[m+15].setRotation(0,0,PI/2);
-    permanent[m+24].setRotation(0,0,PI/2);
+    permanent[m+6].setRotation(3);
+    permanent[m+15].setRotation(3);
+    permanent[m+24].setRotation(3);
   }
   swapClockwise(6,8,24,26);
   swapClockwise(7,17,25,15);
@@ -100,7 +101,7 @@ void xPositiveC(){
 
 void yPositiveA(){
   for(int m = 0; m < 9; m++){
-    permanent[m].setRotation(0,PI/2,0);
+    permanent[m].setRotation(2);
   }
   swapClockwise(0,6,8,2);
   swapClockwise(1,3,7,5);
@@ -108,7 +109,7 @@ void yPositiveA(){
 
 void yPositiveB(){
   for(int m = 0; m < 9; m++){
-    permanent[m+9].setRotation(0,PI/2,0);
+    permanent[m+9].setRotation(2);
   }
   swapClockwise(9,15,17,11);
   swapClockwise(10,12,16,14);
@@ -116,7 +117,7 @@ void yPositiveB(){
 
 void yPositiveC(){
   for(int m = 0; m < 9; m++){
-    permanent[m+18].setRotation(0,PI/2,0);
+    permanent[m+18].setRotation(2);
   }
   swapClockwise(18,24,26,20);
   swapClockwise(19,21,25,23);

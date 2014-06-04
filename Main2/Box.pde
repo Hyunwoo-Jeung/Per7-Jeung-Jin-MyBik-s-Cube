@@ -4,13 +4,10 @@ import java.io.*;
 class Box{
 //Global Variables 
 PShape cube;  
-float Xrotation = 0;
-float Yrotation = 0;
-float Zrotation = 0;
 
 int size=50;
 
-ArrayList<Float> rotation=new ArrayList<Float>();
+ArrayList<Integer> rotation=new ArrayList<Integer>();
 
 //Constructor
 public Box(){
@@ -69,17 +66,23 @@ void setupCube(){
 }
 
 
-void setRotation(float a, float b, float c){
-  Xrotation += a;
-  Yrotation += b;
-  Zrotation += c;
+void setRotation(int m){
+  rotation.add(m);
 }
 
 void display(){
   pushMatrix();
-  rotateX(Xrotation);
-  rotateY(Yrotation);
-  rotateZ(Zrotation);
+  for (int m = 0; m < rotation.size(); m++){
+    if (rotation.get(m) == 1){
+    rotateX(PI/2);
+    }
+    else if (rotation.get(m) == 2){
+    rotateY(PI/2);
+    }
+    else{
+    rotateZ(PI/2);
+    }
+  }
   shape(cube);
   popMatrix();
 }
