@@ -66,61 +66,65 @@ void keyReleased(){
     else if(key == 'g'){
       yPositiveC();
     }
+    else if(key == 'h'){
+      permanent[1].setRotation(2);
+      swapClockwise(1,3,7,5);
+    }
 }
 
 void zPositiveA(){
+  swapClockwise(0,2,18,20);
+  swapClockwise(1,11,19,9);
   for(int m = 0; m < 3; m++){
     permanent[m].setRotation(3);
     permanent[m+9].setRotation(3);
     permanent[m+18].setRotation(3);
   }
-  
-  swapClockwise(0,2,18,20);
-  swapClockwise(1,11,19,9);
+
 }
 
 void zPositiveB(){
+  swapClockwise(3,5,21,23);
+  swapClockwise(4,14,22,12);
   for(int m = 0; m < 3; m++){
     permanent[m+3].setRotation(3);
     permanent[m+12].setRotation(3);
     permanent[m+21].setRotation(3);
   }
-  swapClockwise(3,5,21,23);
-  swapClockwise(4,14,22,12);
 }
 
 void zPositiveC(){
+  swapClockwise(6,8,24,26);
+  swapClockwise(7,17,25,15);
   for(int m = 0; m < 3; m++){
     permanent[m+6].setRotation(3);
     permanent[m+15].setRotation(3);
     permanent[m+24].setRotation(3);
   }
-  swapClockwise(6,8,24,26);
-  swapClockwise(7,17,25,15);
 }
 
 void yPositiveA(){
+  swapClockwise(0,6,8,2);
+  swapClockwise(1,3,7,5);  
   for(int m = 0; m < 9; m++){
     permanent[m].setRotation(2);
   }
-  swapClockwise(0,6,8,2);
-  swapClockwise(1,3,7,5);
 }
 
 void yPositiveB(){
+  swapClockwise(9,15,17,11);
+  swapClockwise(10,12,16,14);
   for(int m = 0; m < 9; m++){
     permanent[m+9].setRotation(2);
   }
-  swapClockwise(9,15,17,11);
-  swapClockwise(10,12,16,14);
 }
 
 void yPositiveC(){
+  swapClockwise(18,24,26,20);
+  swapClockwise(19,21,25,23);
   for(int m = 0; m < 9; m++){
     permanent[m+18].setRotation(2);
   }
-  swapClockwise(18,24,26,20);
-  swapClockwise(19,21,25,23);
 }
 
 void swapClockwise(int a, int b, int c, int d){

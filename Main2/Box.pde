@@ -71,20 +71,18 @@ void setRotation(int m){
 }
 
 void display(){
-  pushMatrix();
   for (int m = 0; m < rotation.size(); m++){
     if (rotation.get(m) == 1){
-    rotateX(PI/2);
+      rotateX(PI/2);
     }
     else if (rotation.get(m) == 2){
-    rotateY(PI/2);
+      rotateY(PI/2);
     }
-    else{
-    rotateZ(PI/2);
+    else {
+      rotateZ(PI/2);
     }
   }
   shape(cube);
-  popMatrix();
 }
 }
 
