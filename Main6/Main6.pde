@@ -23,16 +23,15 @@ void setup(){
           location[n] = new Box( x*100, y*100, z*100 );
           pushMatrix();
           translate(x*100,y*100,z*100);
-          permanent[n].display();
           popMatrix();
           n++;
         }
       }
     }
+    restart();
 }
 
 void draw(){
-  restart(); 
 }
 
 void keyReleased(){
@@ -54,6 +53,8 @@ void keyReleased(){
   else if(key=='d'){
     zPositiveC();
   }
+  println(key);
+  restart();
 }
 
 void xPositiveA(){
