@@ -70,8 +70,6 @@ public Box(int x, int y, int z){
 }
 //Functions
 
-void display(){
-  shape(cube);
+  void display(){
+    shape(cube);}
 }
-}
-

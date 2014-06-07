@@ -1,5 +1,6 @@
 Box[] permanent;
 Box[] location;
+int[] moved=new int[9];
 
 float x = 0;
 float y = 0;
@@ -14,7 +15,6 @@ void setup(){
   location=new Box[28];
   
   int n=1;
-  int w=1;
   translate(250,250,-250);
   for ( int y = -1; y < 2; y++ ){
       for ( int z = -1; z < 2; z++ ){
@@ -67,6 +67,16 @@ void xPositiveA(){
  location[19].xPositive();
  location[22].xPositive();
  location[25].xPositive();
+ 
+ moved[0]=1;
+ moved[1]=4;
+ moved[2]=7;
+ moved[3]=10;
+ moved[4]=13;
+ moved[5]=16;
+ moved[6]=19;
+ moved[7]=22;
+ moved[8]=25;
  
  //changes location
  swapClockwise(7,1,19,25);
@@ -126,29 +136,27 @@ void zPositiveC(){
   swapClockwise(8,18,26,16);
 }
 void swapClockwise(int a, int b, int c, int d){
-  Box temp = location[a];
-  Box temp2 = location[b];
-  Box temp3 = location[c];
-  Box temp4 = location[d];
-  location[a] = temp4;
-  location[b] = temp;
-  location[c] = temp2;
-  location[d] = temp3;
+Box temp=location[b];
+location[b]=location[a];
+location[a]=location[c];
+location[c]=temp;
+temp=location[d];
+location[d]=location[a];
+location[a]=temp;
 }
 
-void mouseDragged() {
-  float rate = 0.01;
-  x += (pmouseY-mouseY) * rate;
-  y += (mouseX-pmouseX) * rate;
-}
+//void mouseDragged() {
+//  float rate = 0.01;
+//  x += (pmouseY-mouseY) * rate;
+//  y += (mouseX-pmouseX) * rate;
+//}
 
 void restart(){
-  background(125);
+//  background(125);
   camera(0, 0, (height/2),
          width/2, height/2, 0, 
          0, 1, 0);
   int n=1;
-  int w=1;
   pushMatrix();
   translate(450,450,-150);
   rotateX(x);
@@ -167,4 +175,26 @@ void restart(){
  popMatrix();
 }
 
+void restart2(){
+  camera(0, 0, (height/2),
+         width/2, height/2, 0, 
+         0, 1, 0);
+  int n=1;
+  pushMatrix();
+  translate(450,450,-150);
+  rotateX(x);
+  rotateY(y);
+  for ( int y = -1; y < 2; y++ ){
+      for ( int z = -1; z < 2; z++ ){
+        for ( int x = -1; x < 2; x++ ){
+          pushMatrix();
+          translate(x*100,y*100,z*100);
+          location[n].display();
+          popMatrix();
+          n++;
+        }
+      }
+    }
+ popMatrix();
+}
 

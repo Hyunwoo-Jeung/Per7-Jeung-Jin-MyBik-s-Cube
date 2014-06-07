@@ -1,6 +1,5 @@
-//Box one;
-//Box two;
-//Box twentyseven;
+import java.util.*;
+import java.io.*;
 
 Box[] permanent;
 Box[] location;
@@ -20,18 +19,6 @@ void setup(){
   location = new Box[28];
   temporary = new Box[9];
   
-  //Create Box and put into permanent and location
-//  one = new Box(-100,-100,-100);
-//  permanent[1] = one;
-//  location[1] = one;
-//  
-//  two = new Box(0,-100,-100);
-//  permanent[2] = two;
-//  location[2] = two;
-//  
-//  twentyseven = new Box(100,0,0);
-//  permanent[27] = twentyseven;
-//  location[27] = twentyseven;
   int n=1;
   translate(250,250,-250);
   rotateX(-PI/4);
@@ -52,82 +39,40 @@ void setup(){
 }
 
 void draw(){
-  //if camera
-  if(inProgress){
-    if(ninety<=PI/2){
-      myDraw();
-    }
-    else{
-      inProgress=false;
-    }
-  }
-  else{
-  //listen for key
-  //each key calls a differnt method: 
-  //that finds location
-  //puts them into temp;
-  //adds to ArrayList
-  //tells if going back or going forward
-  //moves boxes to next location 
-  if (keyPressed){
-      if(key=='e'){
-        xPositiveA();
-        inProgress=true;
-      }
-      else if(key=='d'){
-        xNegativeA();
-        inProgress=true;
-      }
-    }
-  }
+  
+  
+  myDraw();
 }
 
+void keyReleased(){
+      if(key=='e'){
+        xPositiveA();
+      }
+      else if(key=='d'){
+        yPositiveA();
+      }
+    }
+
+
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//Functions
-//X Right A to Left C
-//Y Top to Bottom
-//Z Front to Back
-//xPositive 1-90
-//yPositive 91-180
-//zPostive 181-270
-//xNegative -1 to -90
-//yNegative -91 to -180
-//zNegative -181 to -270
 
 ////////////////////////////////////////////////////////////////////////////////////
 void xNegativeA(){
   goPositive =false;
-  ninety=PI/18;
   for (int i=0;i<9;i++){
      temporary[i]=location[1+(i*3)];
-     temporary[i].rotation.add(temporary[i].rotation.size(),-PI/18);
+     temporary[i].rotation.add(temporary[i].rotation.size(),-PI/2);
   }
-  
+  CounterClockwise(1,7,25,19);
+  CounterClockwise(4,16,22,10);
   //manually moving boxes to next location
-  Box temp=location[7];
-  Box temp2=location[25];
-  
-  location[7]=location[1];
-  location[25]=temp;
-  temp=location[19];
-  location[19]=temp2;
-  location[1]=temp;
-  
-  temp=location[16];
-  location[16]=location[4];
-  temp2=location[22];
-  location[22]=temp;
-  temp=location[10];
-  location[10]=temp2;
-  location[4]=temp;
 }
 ////////////////////////////////////////////////////////////////////////////////////
 void xPositiveA(){
   goPositive =true;
-  ninety=PI/18;
   for (int i=0;i<9;i++){
      temporary[i]=location[1+(i*3)];
-     temporary[i].rotation.add(temporary[i].rotation.size(),PI/18);
+     temporary[i].rotation.add(temporary[i].rotation.size(),PI/2);
   }
   
   //manually moving boxes to next location
@@ -148,63 +93,62 @@ void xPositiveA(){
   location[4]=temp;
 }
 ////////////////////////////////////////////////////////////////////////////////////
+void yPositiveA(){
+  for (int i=0;i<9;i++){
+     temporary[i]=location[i+1];
+     temporary[i].rotation.add(temporary[i].rotation.size(),PI);
+  }
+ CounterClockwise(1,7,9,3);
+ CounterClockwise(2,4,8,6);
+}
 
+void CounterClockwise(int a, int b, int c, int d){
+  Box temp1=location[a];
+  Box temp2=location[b];
+  Box temp3=location[c];
+  Box temp4=location[d];
+  
+  location[a]=temp4;
+  location[b]=temp1;
+  location[c]=temp2;
+  location[d]=temp3;
+}
+////////////////////////////////////////////////////////////////////////////////////
 void myDraw(){
- //Last Step
- //don't forget PI/180
- 
-  //myDraw();
-    //prints out cube
-    //add/subtract to temp[] ArrayList.size()-1
-    //adds to ninety
+  
     background(125);
     translate(250,250,-250);
+    rotateY(PI/4);
+  rotateX(-PI/4);
     //Print cube
     for(int i=1;i<28;i++){
       Box temp = permanent[i];
+      ArrayList<Float> rotate=temp.rotation;
       pushMatrix();
       for (int r=0;r<temp.rotation.size();r++){
-        if(temp.rotation.get(r)>0.0){
-          if(temp.rotation.get(r)<=PI/2){
+          if(temp.rotation.get(r)==PI/2){
             rotateX(temp.rotation.get(r));
           }
-          else if(temp.rotation.get(r)<=PI){
+          else if(temp.rotation.get(r)==PI){
             rotateY(temp.rotation.get(r)-PI/2);
           }
-          else{
+          else if(temp.rotation.get(r)==3*PI/2){
             rotateZ(temp.rotation.get(r)-PI);
           }
-        }
-        else{
-          if(temp.rotation.get(r)>=-PI/2){
+        
+        else if(temp.rotation.get(r)==-PI/2){
             rotateX(temp.rotation.get(r));
           }
-          else if(temp.rotation.get(r)>=-PI){
+          else if(temp.rotation.get(r)==-PI){
             rotateY(temp.rotation.get(r)+PI/2);
           }
           else{
             rotateZ(temp.rotation.get(r)+PI);
           }
         }
-      }
+      
       translate(temp.translateX,temp.translateY,temp.translateZ);
       shape(temp.cube);
       popMatrix();
-      println(temp.rotation);
-    }
-    
-    if(ninety<PI/2){
-    //Add/Subract temporary[]
-    float n = PI/18;
-    ninety+=n;
-    if(!goPositive){
-      n*=-1;
-    }
-    
-    Box temp=temporary[0];
-      for (int i=0;i<9;i++){
-        temp=temporary[i];
-        temp.rotation.set(temp.rotation.size()-1,temp.rotation.get(temp.rotation.size()-1)+n);
-      }
     }
 }
