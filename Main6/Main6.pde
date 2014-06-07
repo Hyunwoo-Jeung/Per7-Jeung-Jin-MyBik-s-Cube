@@ -152,7 +152,7 @@ location[a]=temp;
 //}
 
 void restart(){
-//  background(125);
+  background(125);
   camera(0, 0, (height/2),
          width/2, height/2, 0, 
          0, 1, 0);
