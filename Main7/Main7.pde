@@ -79,8 +79,6 @@ void draw(){
     restart();
     update(mouseX, mouseY);
     textFont(s, 16);
-    fill(0);
-    text("Scramble", 125, 85, 20);
     fill(255,0,0);
     rect(rectX,rectY,rectW,rectH);
     pushMatrix();
@@ -123,11 +121,11 @@ void keyReleased(){
   yNegativeA();
   stack.push(6);
     }
-    else if(key=='b'){
+    else if(key=='g'){
   yPositiveC();
   stack.push(7);
     }
-    else if(key=='v'){
+    else if(key=='f'){
   yNegativeC();
   stack.push(8);
     }
@@ -139,11 +137,11 @@ void keyReleased(){
   zNegativeA();
   stack.push(10);
     }
-    else if(key=='m'){
+    else if(key=='j'){
   zPositiveC();
   stack.push(11);
     }
-    else if(key=='n'){
+    else if(key=='h'){
   zNegativeC();
   stack.push(12);
     }
@@ -348,22 +346,9 @@ void restart(){
     }
     popMatrix();
     pushMatrix();
-    textFont(s, 16);
-    fill(0);
-    text("Scramble", 125, 85, 20);
     fill(255);
     rect(rectX,rectY,rectW,rectH);
     popMatrix();
-    
-//    if (isSolved() && solved){
-//    pushMatrix();
-//    rotateY(-PI/4);
-//    textFont(s, 26);
-//    //text("Good Job!",140,250);
-//    popMatrix();
-//    
-//    solved = false;
-//    }
 }
 
 void update(int x, int y) {
