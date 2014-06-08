@@ -66,11 +66,12 @@ void draw(){
   background(125);
   restart();
   update(mouseX, mouseY);
-  textFont(s, 16);
+  /*textFont(s, 16);
   fill(0);
   text("Scramble", 125, 85, 20);
   fill(255);
   rect(rectX,rectY,rectW,rectH);
+  */
   pushMatrix();
   fill(255);
   rotateY(-PI/4);
@@ -87,41 +88,57 @@ void draw(){
 void keyReleased(){
   if(key=='q'){
     xPositiveA();
+    stack.push(1);
   }
   else if(key=='w'){
     xNegativeA();
+    stack.push(2);
   }
   else if(key=='e'){
     xPositiveC();
+    stack.push(3);
   }
   else if(key=='r'){
     xNegativeC();
+    stack.push(4);
   }
   else if(key=='t'){
     yPositiveA();
+    stack.push(5);
   }
   else if(key=='y'){
     yNegativeA();
+    stack.push(6);
   }
   else if(key=='u'){
     yPositiveC();
+    stack.push(7);
   }
   else if(key=='i'){
     yNegativeC();
+    stack.push(8);
   }
   else if(key=='a'){
     zPositiveA();
+    stack.push(9);
   }
   else if(key=='s'){
     zNegativeA();
+    stack.push(10);
   }
   else if(key=='d'){
     zPositiveC();
+    stack.push(11);
   }
   else if(key=='f'){
     zNegativeC();
+    stack.push(12);
   }
   numberOfTurns++;
+  if(key=='z'){
+    solve();
+    numberOfTurns=0;
+  } 
   /*
   else if(key=='z'){
     startTimer();
@@ -436,4 +453,56 @@ boolean isSolved(){
   return true;
 }
 
-
+void solve(){
+  while(!(stack.empty())){
+    int n = stack.pop();
+    if(n==1){
+      xNegativeA();
+      restart();
+    }
+    else if(n==2){
+      xPositiveA();
+      restart();
+    }
+    else if(n==3){
+      xNegativeC();
+      restart();
+    }
+    else if(n==4){
+      xPositiveC();
+      restart();
+    }
+    else if(n==5){
+      yNegativeA();
+      restart();
+    }
+    else if(n==6){
+      yPositiveA();
+      restart();
+    }
+    else if(n==7){
+      yNegativeC();
+      restart();
+    }
+    else if(n==8){
+      yPositiveC();
+      restart();
+    }
+    else if(n==9){
+      zNegativeA();
+      restart();
+    }
+    else if(n==10){
+      zPositiveA();
+      restart();
+    }
+    else if(n==11){
+      zNegativeC();
+      restart();
+    }
+    else if(n==12){
+      zPositiveC();
+      restart();
+    }
+  }
+}
