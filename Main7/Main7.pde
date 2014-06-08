@@ -494,4 +494,6 @@ void totalReset(){
       }
   }
     }
+    
+    stack=new Stack<Integer>();
 }
