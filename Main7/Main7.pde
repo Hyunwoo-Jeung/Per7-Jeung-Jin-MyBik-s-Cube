@@ -13,6 +13,9 @@ float y = 0;
 int rectX, rectY; //Position of scramble button
 int rectW, rectH; //Width and Height of button
 
+int rectX2, rectY2, rectZ2; //Position of scramble button
+int rectW2, rectH2; 
+
 boolean rectOver = false;
 //--------------------------
 
@@ -37,8 +40,14 @@ void setup(){
     
     rectX = 120;
     rectY = 60;
-    rectW = 100;
-    rectH = 50;
+    rectW = 110;
+    rectH = 55;
+    
+    rectX2 = 0;
+    rectY2 = 0;
+    rectZ2 = 300;
+    rectW2 = 250;
+    rectH2 = 125;
     
     s = createFont("Arial", 16, true);
     
@@ -72,7 +81,7 @@ void draw(){
     textFont(s, 16);
     fill(0);
     text("Scramble", 125, 85, 20);
-    fill(255);
+    fill(255,0,0);
     rect(rectX,rectY,rectW,rectH);
     pushMatrix();
     fill(255);
@@ -80,8 +89,10 @@ void draw(){
     textFont(s, 16);
     text("  Number of turns: " + numberOfTurns,140,350);
     displayTime();
-    
     popMatrix();
+    if(isSolved()){
+      displayRect();
+    }
 }
 
 void keyReleased(){
@@ -439,6 +450,15 @@ void displayTime(){
   }
 }
 //-------------------------------------------
+void displayRect(){
+    pushMatrix();
+    translate(700,150,0);
+    rotateY(PI/2);
+    fill(0,0,255);
+    rect(rectX2, rectY2, rectW2, rectH2);
+    fill(255);
+    popMatrix();
+}
 
 boolean isSolved(){
     for(int m = 1; m < 28; m++){
