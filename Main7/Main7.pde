@@ -1,7 +1,3 @@
-//isSolved is not going to work
-//scramble not straight
-//Finish the methods
-
 import java.util.*;
 import java.io.*;
 
@@ -20,8 +16,6 @@ int rectW, rectH; //Width and Height of button
 boolean rectOver = false;
 //--------------------------
 
-boolean solved = false;
-
 int numberOfTurns = 0;
 
 //Timer-------------------
@@ -39,7 +33,7 @@ Stack<Integer> stack;
 
 void setup(){
     size(600,600,P3D);
-    background(125);
+    background(0);
     
     rectX = 120;
     rectY = 60;
@@ -68,10 +62,11 @@ void setup(){
 }
 
 void draw(){
+  
     if(!doneSolve){
   solve();
     }
-    background(125);
+    background(0);
     restart();
     update(mouseX, mouseY);
     textFont(s, 16);
@@ -166,6 +161,11 @@ void keyReleased(){
         stopTimer();
         numberOfTurns--;
       }
+    }
+    else if(key=='p'){
+    x=0;
+    y=0;
+    numberOfTurns--;
     }
     
     else{
@@ -316,7 +316,6 @@ void mouseDragged() {
 }
 
 void restart(){
-    background(125);
     camera(0, 0, (height/2),
      width/2, height/2, 0, 
      0, 1, 0);
@@ -406,7 +405,6 @@ void scramble(){
       stack.push(11);}
     }
     numberOfTurns = 0;
-    solved = true;
 }
 
 //Timer functions
@@ -452,7 +450,11 @@ boolean isSolved(){
 }
 
 void solve(){
-    if(!(stack.empty())){
+  if(isSolved()){
+    doneSolve=true;
+  }
+  
+  else if(!(stack.empty())){
   int n = stack.pop();
   if(n==1){
       xNegativeA();
