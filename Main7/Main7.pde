@@ -163,10 +163,6 @@ void xPositiveA(){
   location[m].xPositive();
   location[m].setupCube();
     }
-    
-    //changes location
-    swapClockwise(7,1,19,25);
-    swapClockwise(16,4,10,22);
 }
 
 void xNegativeA(){
@@ -174,9 +170,6 @@ void xNegativeA(){
   location[m].xNegative();
   location[m].setupCube();
     }
-    
-    swapClockwise(25,19,1,7);
-    swapClockwise(22,10,4,16);
 }
 
 void xPositiveC(){
@@ -184,9 +177,6 @@ void xPositiveC(){
   location[m].xPositive();
   location[m].setupCube();
     }
-    
-    swapClockwise(9,3,21,27);
-    swapClockwise(18,6,12,24);
 }
 
 void xNegativeC(){
@@ -194,9 +184,6 @@ void xNegativeC(){
   location[m].xNegative();
   location[m].setupCube();
     }
-    
-    swapClockwise(27,21,3,9);
-    swapClockwise(24,12,6,18);
 }
 
 void yPositiveA(){
@@ -204,9 +191,6 @@ void yPositiveA(){
   location[m].yPositive();
   location[m].setupCube();
     }
-    
-    swapClockwise(9,3,1,7);
-    swapClockwise(2,4,8,6);
 }
 
 void yNegativeA(){
@@ -214,9 +198,6 @@ void yNegativeA(){
   location[m].yNegative();
   location[m].setupCube();
     }
-    
-    swapClockwise(7,1,3,9);
-    swapClockwise(6,8,4,2);
 }
 
 void yPositiveC(){
@@ -224,9 +205,6 @@ void yPositiveC(){
   location[m+18].yPositive();
   location[m+18].setupCube();
     }
-    
-    swapClockwise(27,21,19,25);
-    swapClockwise(20,22,26,24);
 }
 
 void yNegativeC(){
@@ -234,9 +212,6 @@ void yNegativeC(){
   location[m+18].yNegative();
   location[m+18].setupCube();
     }
-    
-    swapClockwise(25,19,21,27);
-    swapClockwise(24,26,22,20);
 }
 
 void zPositiveA(){
@@ -248,9 +223,6 @@ void zPositiveA(){
   location[m+9].setupCube();
   location[m+18].setupCube();
     }
-    
-    swapClockwise(1,3,21,19);
-    swapClockwise(2,12,20,10);
 }
 
 void zNegativeA(){
@@ -262,9 +234,6 @@ void zNegativeA(){
   location[m+9].setupCube();
   location[m+18].setupCube();
     }
-    
-    swapClockwise(19,21,3,1);
-    swapClockwise(10,20,12,2);
 }
 
 void zPositiveC(){
@@ -276,9 +245,6 @@ void zPositiveC(){
   location[m+15].setupCube();
   location[m+24].setupCube();
     }
-    
-    swapClockwise(7,9,27,25);
-    swapClockwise(8,18,26,16);
 }
 
 void zNegativeC(){
@@ -290,19 +256,6 @@ void zNegativeC(){
   location[m+15].setupCube();
   location[m+24].setupCube();
     }
-    
-    swapClockwise(25,27,9,7);
-    swapClockwise(16,26,18,8);
-}
-
-void swapClockwise(int a, int b, int c, int d){
-    Box temp=location[b];
-    location[b]=location[a];
-    location[a]=location[c];
-    location[c]=temp;
-    temp=location[d];
-    location[d]=location[a];
-    location[a]=temp;
 }
 
 void mouseDragged() {
