@@ -2,28 +2,28 @@ import java.util.*;
 import java.io.*;
 
 class Box{
-//Global Variables 
-PShape cube;  
+    //Global Variables 
+    PShape cube;  
+    
+    int translateX;
+    int translateY;
+    int translateZ;
 
-int translateX;
-int translateY;
-int translateZ;
-
-int size=50;
-
-color red = color(255,0,0);
-color orange = color(255,150,0);
-color yellow = color(255,255,0);
-color blue = color(0,255,0);
-color green = color(0,0,255);
-color white = color(255);
-
-color[] cc=new color[6];
-
-
-
-//Constructor
-public Box(int x, int y, int z){
+    int size=50;
+    
+    color red = color(255,0,0);
+    color orange = color(255,150,0);
+    color yellow = color(255,255,0);
+    color blue = color(0,255,0);
+    color green = color(0,0,255);
+    color white = color(255);
+    
+    color[] cc=new color[6];
+    
+    
+    
+    //Constructor
+    public Box(int x, int y, int z){
   translateX=x;
   translateY=y;
   translateZ=z;
@@ -33,14 +33,14 @@ public Box(int x, int y, int z){
   cc[3]=orange;
   cc[4]=blue;
   cc[5]=green;
-}
-//Functions
+    }
 
-void display(){
-  setupCube();
+    //Functions    
+    void display(){
   shape(cube);
-}
-void setupCube(){
+    }
+    
+    void setupCube(){
   cube = createShape();
   cube.beginShape(QUADS);
   cube.fill(cc[1]);
@@ -89,9 +89,9 @@ void setupCube(){
   cube.vertex(-size,  size,  size);
   cube.vertex(-size,  size, -size);
   cube.endShape(CLOSE);
-}
-
-void xPositive(){
+    }
+    
+    void xPositive(){
   color temp1=cc[0];
   color temp2=cc[3];
   color temp3=cc[2];
@@ -100,9 +100,9 @@ void xPositive(){
   cc[0]=temp4;
   cc[3]=temp1;
   cc[2]=temp2;
-}
-
-void xNegative(){
+    }
+    
+    void xNegative(){
   color temp1=cc[0];
   color temp2=cc[3];
   color temp3=cc[2];
@@ -111,9 +111,9 @@ void xNegative(){
   cc[0]=temp2;
   cc[3]=temp3;
   cc[2]=temp4;
-}
-
-void yPositive(){
+    }
+    
+    void yPositive(){
   color temp1=cc[3];
   color temp2=cc[4];
   color temp3=cc[1];
@@ -122,9 +122,9 @@ void yPositive(){
   cc[5]=temp1;
   cc[3]=temp2;
   cc[4]=temp3;
-}
-
-void yNegative(){
+    }
+    
+    void yNegative(){
   color temp1=cc[3];
   color temp2=cc[4];
   color temp3=cc[1];
@@ -133,9 +133,9 @@ void yNegative(){
   cc[5]=temp3;
   cc[3]=temp4;
   cc[4]=temp1;
-}
-
-void zPositive(){
+    }
+    
+    void zPositive(){
   color temp1=cc[2];
   color temp2=cc[5];
   color temp3=cc[0];
@@ -144,9 +144,9 @@ void zPositive(){
   cc[4]=temp3;
   cc[2]=temp4;
   cc[5]=temp1;
-}
-
-void zNegative(){
+    }
+    
+    void zNegative(){
   color temp1=cc[2];
   color temp2=cc[5];
   color temp3=cc[0];
@@ -155,19 +155,18 @@ void zNegative(){
   cc[4]=temp1;
   cc[2]=temp2;
   cc[5]=temp3;
-}
-
-boolean equals(Object b){
+    }
+    
+    boolean equals(Object b){
   if ( b == null )
-    return false;
+      return false;
   else if ( b instanceof Box ){
-    for(int n = 0;n < 6;n++){
-      if (cc[n] !=((Box)b).cc[n])
+      for(int n = 0;n < 6;n++){
+    if (cc[n] !=((Box)b).cc[n])
         return false;
-  }
+      }
   }
   return true;
-}
-
+    }    
 }
 
