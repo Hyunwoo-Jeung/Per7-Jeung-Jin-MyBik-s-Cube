@@ -1,3 +1,6 @@
+import java.util.*;
+import java.io.*;
+
 Box[] permanent;
 Box[] location;
 
@@ -91,7 +94,7 @@ void keyReleased(){
   xPositiveA();
   stack.push(1);
     }
-    else if(key=='w'){
+    else if(key=='a'){
   xNegativeA();
   stack.push(2);
     }
@@ -99,7 +102,7 @@ void keyReleased(){
   xPositiveC();
   stack.push(3);
     }
-    else if(key=='r'){
+    else if(key=='d'){
   xNegativeC();
   stack.push(4);
     }
@@ -107,31 +110,31 @@ void keyReleased(){
   yPositiveA();
   stack.push(5);
     }
-    else if(key=='y'){
+    else if(key=='r'){
   yNegativeA();
   stack.push(6);
     }
-    else if(key=='u'){
+    else if(key=='b'){
   yPositiveC();
   stack.push(7);
     }
-    else if(key=='i'){
+    else if(key=='v'){
   yNegativeC();
   stack.push(8);
     }
-    else if(key=='a'){
+    else if(key=='u'){
   zPositiveA();
   stack.push(9);
     }
-    else if(key=='s'){
+    else if(key=='y'){
   zNegativeA();
   stack.push(10);
     }
-    else if(key=='d'){
+    else if(key=='m'){
   zPositiveC();
   stack.push(11);
     }
-    else if(key=='f'){
+    else if(key=='n'){
   zNegativeC();
   stack.push(12);
     }
@@ -187,7 +190,7 @@ void xPositiveC(){
 }
 
 void xNegativeC(){
-    for (int m=1;m<26;m+=3){
+    for (int m=3;m<28;m+=3){
   location[m].xNegative();
   location[m].setupCube();
     }
