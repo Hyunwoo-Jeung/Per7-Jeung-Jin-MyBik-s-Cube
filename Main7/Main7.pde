@@ -27,6 +27,8 @@ long stopTime = 0;
 PFont s;
 //-------------------------
 
+Stack<Integer> stack;
+
 void setup(){
   size(600,600,P3D);
   background(125);
@@ -40,6 +42,8 @@ void setup(){
   
   permanent=new Box[28];
   location=new Box[28];
+  
+  stack = new Stack<Integer>();
   
   int n=1;
   translate(250,250,-250);
@@ -84,20 +88,38 @@ void keyReleased(){
   if(key=='q'){
     xPositiveA();
   }
+  else if(key=='w'){
+    xNegativeA();
+  }
   else if(key=='e'){
     xPositiveC();
+  }
+  else if(key=='r'){
+    xNegativeC();
   }
   else if(key=='t'){
     yPositiveA();
   }
+  else if(key=='y'){
+    yNegativeA();
+  }
   else if(key=='u'){
     yPositiveC();
+  }
+  else if(key=='i'){
+    yNegativeC();
   }
   else if(key=='a'){
     zPositiveA();
   }
+  else if(key=='s'){
+    zNegativeA();
+  }
   else if(key=='d'){
     zPositiveC();
+  }
+  else if(key=='f'){
+    zNegativeC();
   }
   numberOfTurns++;
   /*
@@ -136,6 +158,22 @@ void xPositiveA(){
  swapClockwise(16,4,10,22);
 }
 
+void xNegativeA(){
+  //changes color of each cube
+ location[1].xNegative();
+ location[4].xNegative();
+ location[7].xNegative();
+ location[10].xNegative();
+ location[13].xNegative();
+ location[16].xNegative();
+ location[19].xNegative();
+ location[22].xNegative();
+ location[25].xNegative();
+ //changes location
+ swapClockwise(25,19,1,7);
+ swapClockwise(22,10,4,16);
+}
+
 void xPositiveC(){
   //changes color of each cube
  location[3].xPositive();
@@ -153,6 +191,22 @@ void xPositiveC(){
  swapClockwise(18,6,12,24);
 }
 
+void xNegativeC(){
+  //changes color of each cube
+ location[3].xNegative();
+ location[6].xNegative();
+ location[9].xNegative();
+ location[12].xNegative();
+ location[15].xNegative();
+ location[18].xNegative();
+ location[21].xNegative();
+ location[24].xNegative();
+ location[27].xNegative();
+ //changes location
+ swapClockwise(27,21,3,9);
+ swapClockwise(24,12,6,18);
+}
+
 void yPositiveA(){
   for(int m = 1; m < 10; m++){
     location[m].yPositive();
@@ -161,12 +215,28 @@ void yPositiveA(){
  swapClockwise(2,4,8,6);
 }
 
+void yNegativeA(){
+  for(int m = 1; m < 10; m++){
+    location[m].yNegative();
+  }
+ swapClockwise(7,1,3,9);
+ swapClockwise(6,8,4,2);
+}
+
 void yPositiveC(){
   for(int m = 1; m < 10; m++){
     location[m+18].yPositive();
   }
   swapClockwise(27,21,19,25);
   swapClockwise(20,22,26,24);
+}
+
+void yNegativeC(){
+  for(int m = 1; m < 10; m++){
+    location[m+18].yNegative();
+  }
+  swapClockwise(25,19,21,27);
+  swapClockwise(24,26,22,20);
 }
 
 void zPositiveA(){
@@ -179,6 +249,16 @@ void zPositiveA(){
   swapClockwise(2,12,20,10);
 }
 
+void zNegativeA(){
+  for(int m = 1; m < 4; m++){
+    location[m].zNegative();
+    location[m+9].zNegative();
+    location[m+18].zNegative();
+  }
+  swapClockwise(19,21,3,1);
+  swapClockwise(10,20,12,2);
+}
+
 void zPositiveC(){
   for(int m = 1; m < 4; m++){
     location[m+6].zPositive();
@@ -187,6 +267,16 @@ void zPositiveC(){
   }
   swapClockwise(7,9,27,25);
   swapClockwise(8,18,26,16);
+}
+
+void zNegativeC(){
+  for(int m = 1; m < 4; m++){
+    location[m+6].zNegative();
+    location[m+15].zNegative();
+    location[m+24].zNegative();
+  }
+  swapClockwise(25,27,9,7);
+  swapClockwise(16,26,18,8);
 }
 
 void swapClockwise(int a, int b, int c, int d){
@@ -227,6 +317,13 @@ void restart(){
       }
     }
  popMatrix();
+ pushMatrix();
+  textFont(s, 16);
+  fill(0);
+  text("Scramble", 125, 85, 20);
+  fill(255);
+  rect(rectX,rectY,rectW,rectH);
+  popMatrix();
  if (isSolved() && solved){
    pushMatrix();
    rotateY(-PI/4);
@@ -286,7 +383,7 @@ void mousePressed(){
 
 void scramble(){
   int m;
-  for (int n = 0; n < 2; n++){
+  for (int n = 0; n < 40; n++){
     m = (int) (Math.random() * 6);
     if(m == 0)
       xPositiveA();

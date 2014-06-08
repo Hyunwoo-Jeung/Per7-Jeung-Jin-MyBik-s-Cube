@@ -102,6 +102,17 @@ void xPositive(){
   cc[2]=temp2;
 }
 
+void xNegative(){
+  color temp1=cc[0];
+  color temp2=cc[3];
+  color temp3=cc[2];
+  color temp4=cc[1];
+  cc[1]=temp1;
+  cc[0]=temp2;
+  cc[3]=temp3;
+  cc[2]=temp4;
+}
+
 void yPositive(){
   color temp1=cc[3];
   color temp2=cc[4];
@@ -113,6 +124,17 @@ void yPositive(){
   cc[4]=temp3;
 }
 
+void yNegative(){
+  color temp1=cc[3];
+  color temp2=cc[4];
+  color temp3=cc[1];
+  color temp4=cc[5];
+  cc[1]=temp2;
+  cc[5]=temp3;
+  cc[3]=temp4;
+  cc[4]=temp1;
+}
+
 void zPositive(){
   color temp1=cc[2];
   color temp2=cc[5];
@@ -122,6 +144,17 @@ void zPositive(){
   cc[4]=temp3;
   cc[2]=temp4;
   cc[5]=temp1;
+}
+
+void zNegative(){
+  color temp1=cc[2];
+  color temp2=cc[5];
+  color temp3=cc[0];
+  color temp4=cc[4];
+  cc[0]=temp4;
+  cc[4]=temp1;
+  cc[2]=temp2;
+  cc[5]=temp3;
 }
 
 boolean equals(Object b){
