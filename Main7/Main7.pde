@@ -1,3 +1,7 @@
+//isSolved is not going to work
+//scramble not straight
+//Finish the methods
+
 import java.util.*;
 import java.io.*;
 
@@ -341,15 +345,15 @@ void restart(){
     rect(rectX,rectY,rectW,rectH);
     popMatrix();
     
-    if (isSolved() && solved){
-    pushMatrix();
-    rotateY(-PI/4);
-    textFont(s, 26);
-    //text("Good Job!",140,250);
-    popMatrix();
-    
-    solved = false;
-    }
+//    if (isSolved() && solved){
+//    pushMatrix();
+//    rotateY(-PI/4);
+//    textFont(s, 26);
+//    //text("Good Job!",140,250);
+//    popMatrix();
+//    
+//    solved = false;
+//    }
 }
 
 void update(int x, int y) {
