@@ -32,7 +32,7 @@ long stopTime = 0;
 PFont s;
 //-------------------------
 
-Stack<Integer> stack;
+MyArrayStack<Integer> stack;
 
 void setup(){
     size(600,600,P3D);
@@ -54,141 +54,141 @@ void setup(){
     permanent=new Box[28];
     location=new Box[28];
     
-    stack = new Stack<Integer>();
+    stack = new MyArrayStack<Integer>();
     
     int n=1;
     translate(250,250,-250);
     for ( int y = -1; y < 2; y++ ){
-  for ( int z = -1; z < 2; z++ ){
-      for ( int x = -1; x < 2; x++ ){
-    permanent[n] = new Box( x*100, y*100, z*100 );
-    location[n] = new Box( x*100, y*100, z*100 );
-    location[n].setupCube();
-    n++;
+      for ( int z = -1; z < 2; z++ ){
+        for ( int x = -1; x < 2; x++ ){
+          permanent[n] = new Box( x*100, y*100, z*100 );
+          location[n] = new Box( x*100, y*100, z*100 );
+          location[n].setupCube();
+          n++;
+        }
       }
-  }
     }
 }
 
 void draw(){
   
-    if(!doneSolve){
-  solve();
-    }
-    background(0);
-    restart();
-    update(mouseX, mouseY);
-    textFont(s, 16);
-    fill(255,0,0);
-    rect(rectX,rectY,rectW,rectH);
-    pushMatrix();
-    fill(255);
-    rotateY(-PI/4);
-    textFont(s, 16);
-    text("  Number of turns: " + numberOfTurns,140,350);
-    displayTime();
-    popMatrix();
-    if(isSolved()){
-      displayRect();
-    }
+  if(!doneSolve){
+    solve();
+  }
+  background(0);
+  restart();
+  update(mouseX, mouseY);
+  textFont(s, 16);
+  fill(255,0,0);
+  rect(rectX,rectY,rectW,rectH);
+  pushMatrix();
+  fill(255);
+  rotateY(-PI/4);
+  textFont(s, 16);
+  text("  Number of turns: " + numberOfTurns,140,350);
+  displayTime();
+  popMatrix();
+  if(isSolved()){
+    displayRect();
+  }
 }
 
 void keyReleased(){
-    if(!doneSolve){
+  if(!doneSolve){
   //don't accept any key
+  }
+  else if(key=='q'){
+    xPositiveA();
+    stack.push(1);
+  }
+  else if(key=='a'){
+    xNegativeA();
+    stack.push(2);
+  }
+  else if(key=='e'){
+    xPositiveC();
+    stack.push(3);
+  }
+  else if(key=='d'){
+    xNegativeC();
+    stack.push(4);
+  }
+  else if(key=='t'){
+    yPositiveA();
+    stack.push(5);
+  }
+  else if(key=='r'){
+    yNegativeA();
+    stack.push(6);
+  }
+  else if(key=='g'){
+    yPositiveC();
+    stack.push(7);
+  }
+  else if(key=='f'){
+    yNegativeC();
+    stack.push(8);
+  }
+  else if(key=='u'){
+    zPositiveA();
+    stack.push(9);
+  }
+  else if(key=='y'){
+    zNegativeA();
+    stack.push(10);
+  }
+  else if(key=='j'){
+    zPositiveC();
+    stack.push(11);
+  }
+  else if(key=='h'){
+    zNegativeC();
+    stack.push(12);
+  }
+  else if(key=='z'){
+    totalReset();
+    startTimer();
+    numberOfTurns=0;
+    numberOfTurns--;
+  }
+  else if(key=='x'){
+    solve();
+    doneSolve=false;
+    numberOfTurns=0;
+    numberOfTurns--;
+    startTimer();
+  }
+  else if(key=='c'){
+    timerPressed = !timerPressed;
+    if(timerPressed){
+      time = true;
+      startTimer();
+      numberOfTurns--;
     }
-    else if(key=='q'){
-  xPositiveA();
-  stack.push(1);
+    else{
+      time = false;
+      stopTimer();
+      numberOfTurns--;
     }
-    else if(key=='a'){
-  xNegativeA();
-  stack.push(2);
-    }
-    else if(key=='e'){
-  xPositiveC();
-  stack.push(3);
-    }
-    else if(key=='d'){
-  xNegativeC();
-  stack.push(4);
-    }
-    else if(key=='t'){
-  yPositiveA();
-  stack.push(5);
-    }
-    else if(key=='r'){
-  yNegativeA();
-  stack.push(6);
-    }
-    else if(key=='g'){
-  yPositiveC();
-  stack.push(7);
-    }
-    else if(key=='f'){
-  yNegativeC();
-  stack.push(8);
-    }
-    else if(key=='u'){
-  zPositiveA();
-  stack.push(9);
-    }
-    else if(key=='y'){
-  zNegativeA();
-  stack.push(10);
-    }
-    else if(key=='j'){
-  zPositiveC();
-  stack.push(11);
-    }
-    else if(key=='h'){
-  zNegativeC();
-  stack.push(12);
-    }
-    else if(key=='z'){
-      totalReset();
-  startTimer();
-  numberOfTurns=0;
-  numberOfTurns--;
-    }
-    else if(key=='x'){
-  solve();
-  doneSolve=false;
-  numberOfTurns=0;
-  numberOfTurns--;
-  startTimer();
-    }
-    else if(key=='c'){
-      timerPressed = !timerPressed;
-      if(timerPressed){
-        time = true;
-        startTimer();
-        numberOfTurns--;
-      }
-      else{
-        time = false;
-        stopTimer();
-        numberOfTurns--;
-      }
-    }
-    else if(key=='p'){
+  }
+  else if(key=='p'){
     x=0;
     y=0;
     numberOfTurns--;
-    }
+  }
     
-    else{
-  numberOfTurns--;
-    }
-    numberOfTurns++;
+  else{
+    numberOfTurns--;
+  }
+  numberOfTurns++;
 }
 
 void xPositiveA(){
     //changes color of each cube
-    for (int m=1;m<26;m+=3){
-  location[m].xPositive();
-  location[m].setupCube();
-    }
+  for (int m=1;m<26;m+=3){
+    location[m].xPositive();
+    location[m].setupCube();
+  }
   swapClockwise(7,1,19,25);
   swapClockwise(16,4,10,22);
 }
@@ -257,14 +257,14 @@ void yNegativeC(){
 }
 
 void zPositiveA(){
-    for(int m = 1; m < 4; m++){
-  location[m].zPositive();
-  location[m+9].zPositive();
-  location[m+18].zPositive();
-  location[m].setupCube();
-  location[m+9].setupCube();
-  location[m+18].setupCube();
-    }
+  for(int m = 1; m < 4; m++){
+    location[m].zPositive();
+    location[m+9].zPositive();
+    location[m+18].zPositive();
+    location[m].setupCube();
+    location[m+9].setupCube();
+    location[m+18].setupCube();
+  }
   swapClockwise(1,3,21,19);
   swapClockwise(2,12,20,10);
 }
@@ -296,26 +296,26 @@ void zPositiveC(){
 }
 
 void zNegativeC(){
-    for(int m = 1; m < 4; m++){
-  location[m+6].zNegative();
-  location[m+15].zNegative();
-  location[m+24].zNegative();
-  location[m+6].setupCube();
-  location[m+15].setupCube();
-  location[m+24].setupCube();
-    }
+  for(int m = 1; m < 4; m++){
+    location[m+6].zNegative();
+    location[m+15].zNegative();
+    location[m+24].zNegative();
+    location[m+6].setupCube();
+    location[m+15].setupCube();
+    location[m+24].setupCube();
+  }
   swapClockwise(25,27,9,7);
   swapClockwise(16,26,18,8);
 }
 
 void swapClockwise(int a, int b, int c, int d){
-Box temp=location[b];
-location[b]=location[a];
-location[a]=location[c];
-location[c]=temp;
-temp=location[d];
-location[d]=location[a];
-location[a]=temp;
+  Box temp=location[b];
+  location[b]=location[a];
+  location[a]=location[c];
+  location[c]=temp;
+  temp=location[d];
+  location[d]=location[a];
+  location[a]=temp;
 }
 
 void mouseDragged() {
@@ -334,15 +334,15 @@ void restart(){
     rotateX(x);
     rotateY(y);
     for ( int y = -1; y < 2; y++ ){
-  for ( int z = -1; z < 2; z++ ){
-      for ( int x = -1; x < 2; x++ ){
-    pushMatrix();
-    translate(x*100,y*100,z*100);
-    location[n].display();
-    popMatrix();
-    n++;
+      for ( int z = -1; z < 2; z++ ){
+        for ( int x = -1; x < 2; x++ ){
+          pushMatrix();
+          translate(x*100,y*100,z*100);
+          location[n].display();
+          popMatrix();
+          n++;
+        }
       }
-  }
     }
     popMatrix();
     pushMatrix();
@@ -352,55 +352,56 @@ void restart(){
 }
 
 void update(int x, int y) {
-    if ( overRect(rectX, rectY, rectW, rectH) ) {
-  rectOver = true;
-    }
-    else {
-  rectOver = false;
-    }
+  if ( overRect(rectX, rectY, rectW, rectH) ) {
+    rectOver = true;
+  }
+  else {
+    rectOver = false;
+  }
 }
 
 boolean overRect(int x, int y, int width, int height)  {
-    if (mouseX >= x && mouseX <= x+width && 
-  mouseY >= y && mouseY <= y+height) {
-  return true;
-    } else {
-  return false;
-    }
+  if (mouseX >= x && mouseX <= x+width && 
+      mouseY >= y && mouseY <= y+height) {
+    return true;
+  } 
+  else {
+    return false;
+  }
 }
 
 void mousePressed(){
-    if(rectOver){
-  scramble();
-  startTimer();
-    }
+  if(rectOver){
+    scramble();
+    startTimer();
+  }
 }
 
 void scramble(){
-    int m;
-    for (int n = 0; n < 40; n++){
-  m = (int) (Math.random() * 6);
-  if(m == 0){
+  int m;
+  for (int n = 0; n < 40; n++){
+    m = (int) (Math.random() * 6);
+    if(m == 0){
       xPositiveA();
       stack.push(1);
   }
-  else if(m == 1){
+    else if(m == 1){
       xPositiveC();
       stack.push(3);}
-  else if(m == 2){
+    else if(m == 2){
       yPositiveA();
       stack.push(5);}
-  else if(m == 3){
+    else if(m == 3){
       yPositiveC();
       stack.push(7);}
-  else if(m == 4){
+    else if(m == 4){
       zPositiveA();
       stack.push(9);}
-  else if(m == 5){
+    else if(m == 5){
       zPositiveC();
       stack.push(11);}
-    }
-    numberOfTurns = 0;
+  }
+  numberOfTurns = 0;
 }
 
 //Timer functions
@@ -418,10 +419,10 @@ void stopTimer(){
 long elapsedTimeSecs(){
     long elapsed;
     if (running) {
-  elapsed = ((millis() - startTime)/1000);
+      elapsed = ((millis() - startTime)/1000);
     }
     else{
-  elapsed = ((stopTime -startTime)/1000);
+      elapsed = ((stopTime -startTime)/1000);
     }
     return elapsed;
 }
@@ -447,9 +448,9 @@ void displayRect(){
 
 boolean isSolved(){
     for(int m = 1; m < 28; m++){
-  if(!(permanent[m].equals(location[m]))){
-      return false;
-  }
+      if(!(permanent[m].equals(location[m]))){
+        return false;
+      }
     }
     return true;
 }
@@ -505,15 +506,15 @@ void solve(){
 
 void totalReset(){
   int n=1;
-    translate(250,250,-250);
-    for ( int y = -1; y < 2; y++ ){
-  for ( int z = -1; z < 2; z++ ){
+  translate(250,250,-250);
+  for ( int y = -1; y < 2; y++ ){
+    for ( int z = -1; z < 2; z++ ){
       for ( int x = -1; x < 2; x++ ){
-    location[n] = new Box( x*100, y*100, z*100 );
-    location[n].setupCube();
-    n++;
+        location[n] = new Box( x*100, y*100, z*100 );
+        location[n].setupCube();
+        n++;
       }
-  }
     }
-    stack=new Stack<Integer>();
+  }
+  stack=new MyArrayStack<Integer>();
 }
